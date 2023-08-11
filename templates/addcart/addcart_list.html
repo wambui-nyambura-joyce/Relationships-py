@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <th>Name</th>
+        <th> price</th>
+        <th>Discount</th>
+        {% for product in cart%}
+
+        <tr>
+            <td>{{product.product_name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.discount}}</td>
+            <td>
+                <a href="{% url 'edit_cart_view' cart.id %}"><button>Edit</button></a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>
