@@ -1,6 +1,11 @@
 from django.contrib import admin
-from .models import Order
+
+
 # Register your models here.
+from django.contrib import admin
+from .models import Order
+
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('order_number','order_total','customer','delivery_location','product_id','payment_options','order_date')
-admin.site.register(Order,OrderAdmin)
+    list_display = ('product_name', 'quantity', 'total_price', 'date_created')
+
+admin.site.register(Order, OrderAdmin)

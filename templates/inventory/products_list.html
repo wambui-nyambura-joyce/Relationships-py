@@ -1,26 +1,43 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/product.css' %}">
     <title>Document</title>
+
+ 
+ 
 </head>
 <body>
-    <h3>Products List</h3>
-    <table>
-        <th>
-            <td>Name</td>
-            <td>Description</td>
-            <td>Price</td>
-        </th>
-        {% for product in products%} 
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.price}}</td>
-            <td><a href="{% url 'product_details' product.id %}">View Product</a></td>
-        </tr>
-        {% endfor%} 
+    <table class="product-table">
+      
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Customer Details</th>
+                <th>Edit Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td >{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <a href="{% url 'products_detail_view' id=product.id %}">View details</a>
+                </td>
+                <td>
+                    <a href="{% url 'products_edit_view' id=product.id %}">Edit product</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </body>
 </html>

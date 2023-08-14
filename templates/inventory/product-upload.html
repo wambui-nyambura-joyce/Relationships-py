@@ -7,8 +7,8 @@
 </head>
 <body>
         <h3>Product Upload Form</h3>
-        <form method="POST" class="upload-form">
-        {% csrf_token %}  //cross-site request forgery
+        <form method="post" class="upload-form">
+        {% csrf_token %} 
         {{form.as_p}}
         <button type="submit">Save</button>
     </form>

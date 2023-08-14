@@ -40,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventory',
     'order',
-    'addcart',
-    'customersystem',
+    'shoppingcart',
+    'customer',
     'vendor',
     'payment',
-    'ratings',
+    'reviews',
     'notification',
-    'shipment',
+    'shipping',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +78,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'greenkiosk.wsgi.application'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Database

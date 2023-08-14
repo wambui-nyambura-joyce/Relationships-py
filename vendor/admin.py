@@ -1,7 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
 from .models import Vendor
+
+@admin.register(Vendor)
 class VendorAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "phone_number", "address", "company_name", "is_active")
-admin.site.register(Vendor,VendorAdmin)
+    list_display = ('name', 'address')
+    search_fields = ('name', 'address')

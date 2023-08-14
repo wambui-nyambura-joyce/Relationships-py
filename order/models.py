@@ -1,20 +1,19 @@
 from django.db import models
-from addcart.models import Cart
-from customersystem.models import CustomerSystem
-from shipment.models import Delivery
-# from payment.models import Payment
-# Create your models here.
+from payment.models import Payment
+from inventory.models import Product
+from customer.models import Customer
+from shoppingcart.models import ShoppingCart
+
 class Order(models.Model):
-    # payment = models.OneToOneField(Payment, on_delete=models.PROTECT, null=True)
-    order_number = models.IntegerField()
-    order_total = models.IntegerField()
-    customer = models.CharField(max_length=32)
-    delivery_location = models.CharField(max_length=100)
-    product_id = models.IntegerField()
-    payment_options = models.CharField(max_length=100)
-    order_date = models.DateField(auto_now=True)
-    basket = models.ForeignKey(Cart, null=True, on_delete=models.CASCADE)
-    customer = models.ForeignKey(CustomerSystem, null=True, on_delete=models.CASCADE)
-    shipment = models.ForeignKey(Delivery,null=True, on_delete=models.CASCADE)
+    payment = models.OneToOneField(Payment, on_delete=models.CASCADE, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    product_name = models.CharField(max_length=32)
+    quantity = models.PositiveIntegerField()
+    total_price = models.DecimalField(max_digits=8, decimal_places=2)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    shopping_carts = models.ManyToManyField(ShoppingCart)
+
     def __str__(self):
-        return f"Order {self.order_number}"
+        return f"Order {self.pk}"
